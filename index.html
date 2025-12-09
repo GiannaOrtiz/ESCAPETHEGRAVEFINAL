@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Using a Modal</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"
+    rel="stylesheet"
+  />
+
+  <body>
+    <div id="blink-overlay"></div>
+
+    <div id="screen-wipe"></div>
+    <!-- LEFT COLUMN ON STARTINGSCREEN-->
+    <div class="col">
+      <div class="pbox"></div>
+      <div class="pbox">
+        <div class="center-content rbox">
+          <img
+            src="images/ARROWLEFT.png"
+            class="clickable"
+            id=""
+            onclick="showModalLeft()"
+          />
+        </div>
+        <div class="gbox"></div>
+      </div>
+      <div class="pbox" id="lefthandbox"></div>
+    </div>
+    <!-- MIDDLE COLUMN ON STARTINGSCREEN-->
+    <div class="col">
+      <div class="center-content lbbox">
+        <img
+          src="images/ARROWUP.png"
+          class="clickable"
+          id=""
+          onclick="showModalUP()"
+        />
+      </div>
+      <div class="center-content lmbox">
+        <div
+          id="textBox"
+          style="
+            opacity: 1;
+            transition: opacity 1s ease;
+            text-align: center;
+            font-family: 'Creepster', cursive;
+            color: rgb(255, 155, 6);
+            font-size: 25px;
+          "
+        >
+          Dang it...someone knocked me out...and buried me alive?! I gotta get
+          out of here before my light runs out..
+        </div>
+      </div>
+      <div class="mpGREbox">
+        <div class="rMIDbox center-content">
+          <img
+            src="images/TRASHONLEFT.png"
+            class="TRASHimg clickable"
+            id="TRSH1"
+            onclick="TRASHGONE1()"
+          />
+        </div>
+        <div class="rMIDbox center-content">
+          <img
+            src="images/NEWTRASHMIDDLE.png"
+            class="TRASHimgTWO clickable"
+            id="TRSH2"
+            onclick="TRASHGONE2()"
+          />
+        </div>
+        <div class="rMIDbox center-content">
+          <img
+            src="images/NEWTRASHLEFT.png"
+            class="TRASHimg clickable"
+            id="TRSH3"
+            onclick="TRASHGONE3()"
+          />
+        </div>
+      </div>
+      <div class="mpbox"></div>
+    </div>
+    <!-- RIGHT COLUMN ON STARTINGSCREEN-->
+    <div class="col">
+      <div class="pbox"></div>
+      <div class="pbox">
+        <div class="gbox"></div>
+        <div class="center-content rbox">
+          <img
+            src="images/ARROWRIGHT.png"
+            class="clickable"
+            id=""
+            onclick="showModalRight()"
+          />
+        </div>
+      </div>
+      <div class="pbox" id="righthandbox"></div>
+    </div>
+
+    <!-- RIGHTSCREENMODAL-->
+
+    <div class="modalRight center-content" id="myModalRight">
+      <!-- RIGHTSCREENMODAL LEFT COLUMN -->
+      <div class="Rcol">
+        <div class="Rpbox">
+          <img src="" class="" id="" onclick="" />
+        </div>
+        <div class="pbox">
+          <div class="center-content Rrbox">
+            <img
+              src="images/ARROWLEFT.png"
+              class=""
+              id="arrowleftonrightscreen"
+              onclick="hideModalRight()"
+            />
+          </div>
+          <div class="center-content Rgbox">
+            <img
+              src="images/BOXHAMMERLOCK.png"
+              class="LOCKEDBOXimg clickable"
+              id="LOCKEDBOX_IMAGE"
+              onclick="showLOCKEDBOX()"
+            />
+          </div>
+        </div>
+        <div class="Rpbox center-content" id="SMISNEEDEDRIGHTSCREEN"></div>
+      </div>
+      <!-- RIGHTSCREENMODAL MIDDLE COLUMN -->
+      <div class="fade NRcol">
+        <div class="fade center-content Rlbbox"></div>
+        <div class="fade center-content Rlmbox"></div>
+        <div class="fade mpGREbox">
+          <div class="rMIDbox center-content"></div>
+          <div class="rMIDbox center-content"></div>
+          <div class="rMIDbox center-content"></div>
+        </div>
+        <div class="mpbox"></div>
+      </div>
+      <!-- RIGHTSCREENMODAL THIRD COLUMN -->
+      <div class="fade NRcol">
+        <div class="ABOVENAILbox"></div>
+        <div class="NAILbox">
+          <img
+            src="images/BNAILRIGHT (1).PNG"
+            class="NAILimg clickable hammer-nail"
+            id="BNAILRIGHT1"
+            onclick="handleNailClick('right')"
+          />
+        </div>
+      </div>
+
+      <!-- RIGHTSCREENMODAL FOURTH COLUMN -->
+      <div class="fade Rcol">
+        <div class="Rpbox"></div>
+        <div class="Rpbox">
+          <div class="Rgbox"></div>
+          <div class="fade center-content Rrbox"></div>
+        </div>
+        <div class="Rpbox">
+          <img src="" class="" id="" onclick="" />
+        </div>
+      </div>
+    </div>
+
+    <!-- LEFTSCREENMODAL-->
+
+    <div class="modalLeft center-content" id="myModalLeft">
+      <!-- LEFTSCREENMODAL LEFT COLUMN -->
+      <div class="Rcol">
+        <div class="Rpbox">
+          <img src="" class="" id="" onclick="" />
+        </div>
+        <div class="pbox">
+          <div class="center-content Rrbox"></div>
+          <div class="center-content Rgbox">
+            <img
+              src="images/NOTEONLEFTSIDENEW.png"
+              class="LOCKEDBOXimg clickable"
+              id=""
+              onclick="showNOTE()"
+            />
+          </div>
+        </div>
+        <div class="Rpbox">
+          <img src="" class="" id="" onclick="" />
+        </div>
+      </div>
+      <!-- LEFTSCREENMODAL MIDDLE COLUMN -->
+      <div class="NRcol">
+        <div class="ABOVENAILbox"></div>
+        <div class="NAILbox">
+          <img
+            src="images/BNAILRIGHT (1).PNG"
+            class="LEFTNAILimg clickable hammer-nail"
+            id="BNAILRIGHT2"
+            onclick="handleNailClick('left')"
+          />
+        </div>
+      </div>
+      <!-- LEFTSCREENMODAL THIRD COLUMN -->
+
+      <div class="fade NRcol">
+        <div class="fade center-content Rlbbox"></div>
+        <div class="fade center-content Rlmbox"></div>
+        <div class="fade mpGREbox">
+          <div class="rMIDbox center-content"></div>
+          <div class="rMIDbox center-content"></div>
+          <div class="rMIDbox center-content"></div>
+        </div>
+        <div class="mpbox"></div>
+      </div>
+      <!-- LEFTSCREENMODAL FOURTH COLUMN -->
+
+      <div class="Rcol">
+        <div class="Rpbox"></div>
+        <div class="Rpbox">
+          <div class="Rgbox"></div>
+          <div class="center-content Rrbox">
+            <img
+              src="images/ARROWRIGHT.png"
+              class="clickable"
+              id="leftmodalarrow"
+              onclick="hideModalLeft()"
+            />
+          </div>
+        </div>
+        <div class="center-content Rpbox" id="SMISNEEDEDLEFTSCREEN"></div>
+      </div>
+    </div>
+
+    <!-- UPSCREENMODAL-->
+    <div class="modalUP center-content" id="myModalUP">
+      <div class="upcol" id=""></div>
+      <div class="upcol" id="">
+        <div class="DOWNARROWBOX1"></div>
+        <div class="center-content DOWNARROWBOX">
+          <img
+            src="images/ARROWDOWN.PNG"
+            class="clickable img"
+            id=""
+            onclick="hideModalUP()"
+          />
+        </div>
+      </div>
+      <div class="fade upcol" id=""></div>
+    </div>
+
+    <!-- RIGHTSCREENMODAL LOCKED BOX -->
+
+    <div class="modalLOCKED center-content" id="myLOCKEDBOX">
+      <!--FIRSTNUMBERCOLUMN-->
+      <div class="LOCKEDBOXCOL">
+        <div class="emptynumberBox">
+          <img
+            src="images/CLOSEMARK.png"
+            class="CLOSEMARKimg clickable"
+            onclick="hideLOCKEDBOX()"
+            id=""
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/ONE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNONEBLUEABOVE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/TWO.JPG"
+            class="clickable"
+            onclick="slotspin1()"
+            id="COLUMNONEMIDDLE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/THREE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNONEBLUEBELOW"
+          />
+        </div>
+        <div class="emptynumberBox"></div>
+      </div>
+      <!--SECONDNUMBERCOLUMN-->
+      <div class="LOCKEDBOXCOL">
+        <div class="emptynumberBox"></div>
+        <div class="center-content numberBox">
+          <img
+            src="images/ONE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNTWOBLUEABOVE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/TWO.JPG"
+            class="clickable"
+            onclick="slotspin2()"
+            id="COLUMNTWOMIDDLE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/THREE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNTWOBLUEBELOW"
+          />
+        </div>
+      </div>
+      <!--THIRDNUMBERCOLUMN-->
+      <div class="LOCKEDBOXCOL">
+        <div class="emptynumberBox"></div>
+        <div class="center-content numberBox">
+          <img
+            src="images/ONE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNTHREEBLUEABOVE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/TWO.JPG"
+            class="clickable"
+            onclick="slotspin3()"
+            id="COLUMNTHREEMIDDLE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/THREE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNTHREEBLUEBELOW"
+          />
+        </div>
+      </div>
+      <!--FOURTHNUMBERCOLUMN-->
+      <div class="LOCKEDBOXCOL">
+        <div class="emptynumberBox"></div>
+        <div class="center-content numberBox">
+          <img
+            src="images/ONE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNFOURBLUEABOVE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/TWO.JPG"
+            class="clickable"
+            onclick="slotspin4()"
+            id="COLUMNFOURMIDDLE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/THREE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNFOURBLUEBELOW"
+          />
+        </div>
+      </div>
+      <!--FIFTHNUMBERCOLUMN-->
+      <div class="LOCKEDBOXCOL">
+        <div class="emptynumberBox"></div>
+        <div class="center-content numberBox">
+          <img
+            src="images/ONE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNFIVEBLUEABOVE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/TWO.JPG"
+            class="clickable"
+            onclick="slotspin5()"
+            id="COLUMNFIVEMIDDLE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/THREE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNFIVEBLUEBELOW"
+          />
+        </div>
+      </div>
+      <!--SIXTHNUMBERCOLUMN-->
+      <div class="LOCKEDBOXCOL">
+        <div class="emptynumberBox"></div>
+        <div class="center-content numberBox">
+          <img
+            src="images/ONE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNSIXBLUEABOVE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/TWO.JPG"
+            class="clickable"
+            onclick="slotspin6()"
+            id="COLUMNSIXMIDDLE"
+          />
+        </div>
+        <div class="center-content numberBox">
+          <img
+            src="images/THREE.JPG"
+            class=""
+            onclick=""
+            id="COLUMNSIXBLUEBELOW"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- LEFTSCREENMODAL NOTE -->
+
+    <div class="modalLOCKED center-content" id="myNOTE">
+      <!-- REMOVE THE IMAGE && BUILD YOUR LAYOUT HERE -->
+      <div class="nudgeitleft nbox">
+        <img
+          src="images/DeciphernoteLAST.png"
+          class="NOTEimg"
+          id=""
+          onclick=""
+        />
+      </div>
+
+      <div class="nbox2">
+        <div class="inNOTEboxTT">
+          <img
+            src="images/REDTHUMBTACK.png"
+            class="clickable NOTEimg"
+            id=""
+            onclick="hideNOTE()"
+          />
+        </div>
+        <div class="inNOTEbox"></div>
+      </div>
+    </div>
+
+    <audio id="exitSound" src="sounds/EXITINGCOFFIN.mp3"></audio>
+    <audio id="trashshuffle" src="sounds/trash.mp3"></audio>
+    <audio id="paperopen" src="sounds/paperopen.mp3"></audio>
+    <audio id="paperclose" src="sounds/paperclose.mp3"></audio>
+    <audio id="moving" src="sounds/movingbetweenscreens3.mp3"></audio>
+    <audio id="movingup" src="sounds/lookingup.mp3"></audio>
+    <audio id="combo" src="sounds/combolock.mp3"></audio>
+    <audio id="splat" src="sounds/slime-splat-4-219250.mp3"></audio>
+    <audio id="hammerSMASH" src="sounds/hammer-smash-effect-382731.mp3"></audio>
+
+    <audio id="ambience" src="sounds/ambiancecreepy.mp3" loop></audio>
+
+    <div id="blackout" style=""></div>
+    <div id="blackout"></div>
+    <img id="jumpscare-img" src="images/MIAAAA.png" />
+  </body>
+
+  <audio src="sounds/jollibee-jumpscare.mp3" type="audio/mp3" id=""></audio>
+  <script src="script.js"></script>
+
+  <div id="global-timer">
+    <span id="lighter-timer">30</span>
+  </div>
+</html>

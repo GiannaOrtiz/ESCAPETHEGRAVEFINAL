@@ -1,0 +1,777 @@
+/* build your layout */
+body {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  background-image: url("images/NEWSTARTINGSCREEN.jpg"); /* Replace with the path to your image */
+  background-size: cover; /* Ensure the image covers the entire viewport */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+#SMISNEEDEDRIGHTSCREEN {
+  transition: opacity 1s ease;
+}
+
+.nail-message {
+  text-align: center;
+  font-family: "Creepster", cursive;
+  font-size: 18px;
+  color: rgb(255, 155, 6); /* <-- change this to any color */
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.hammer-hint {
+  font-size: 26px;
+  color: rgb(255, 155, 6);
+  font-family: "Creepster", cursive;
+  text-align: center;
+}
+
+@keyframes flashRedPulse {
+  0% {
+    color: #ff0000 !important;
+    text-shadow: 0 0 20px #ff0000, 0 0 40px #ff1111, 0 0 80px #ff0000;
+    transform: scale(1);
+  }
+  50% {
+    color: #ffffff !important;
+    text-shadow: 0 0 50px #ff4444, 0 0 100px #ff2222, 0 0 150px #ff0000;
+    transform: scale(1.28);
+  }
+  100% {
+    color: #ff0000 !important;
+    text-shadow: 0 0 20px #ff0000, 0 0 40px #ff1111, 0 0 80px #ff0000;
+    transform: scale(1);
+  }
+}
+
+#lighter-timer.low-time {
+  animation: flashRedPulse 0.45s infinite;
+  font-weight: 900;
+  -webkit-text-stroke: 2px black;
+}
+
+#lighter-timer.low-time {
+  animation: flashRedPulse 0.7s infinite;
+  font-weight: 800;
+  transition: transform 0.1s linear;
+  /* ensure visibility on dark/light backgrounds */
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.6);
+}
+
+.low-time {
+  animation: flashRed 0.7s infinite;
+  font-weight: bold;
+}
+
+#blink-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: black;
+  z-index: 9999;
+
+  opacity: 1;
+  animation: dramatic-blink 7s ease-out forwards;
+}
+
+/* Slow dramatic wake-up with a double blink */
+@keyframes dramatic-blink {
+  /* Player unconscious */
+  0% {
+    opacity: 1;
+  }
+
+  /* Slow first opening (long fade) */
+  30% {
+    opacity: 0.2;
+  }
+
+  /* Fully open */
+  40% {
+    opacity: 0;
+  }
+
+  /* Pause while awake—moment of awareness */
+  50% {
+    opacity: 0;
+  }
+
+  /* First blink closes */
+  60% {
+    opacity: 1;
+  }
+
+  /* Opens again slowly */
+  75% {
+    opacity: 0;
+  }
+
+  /* Second blink (half blink) */
+  85% {
+    opacity: 0.6;
+  }
+
+  /* Final clear vision */
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Nails should always override cursor */
+.nail {
+  cursor: default !important;
+}
+
+/* Create a full-screen overlay for the close animation */
+.gradient-cover {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: linear-gradient(to right, black, transparent);
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes closeFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes closeFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes closeFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth transform */
+#screen-wipe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+  opacity: 0;
+
+  /* Smooth animation */
+  transition: opacity 0.2s linear;
+  z-index: 99999; /* VERY high so it covers everything */
+}
+
+/* Start invisible */
+#screen-wipe.hidden {
+  opacity: 0;
+}
+
+/* Active wipe */
+#screen-wipe.active {
+  opacity: 1;
+}
+
+/* Wipe directions (animated via background-position) */
+.wipe-right {
+  background: linear-gradient(to right, black 0%, transparent 100%);
+  animation: wipe-right 0.4s forwards;
+}
+
+.wipe-left {
+  background: linear-gradient(to left, black 0%, transparent 100%);
+  animation: wipe-left 0.4s forwards;
+}
+
+.wipe-up {
+  background: linear-gradient(to top, black 0%, transparent 100%);
+  animation: wipe-up 0.4s forwards;
+}
+
+/* KEYFRAMES */
+@keyframes wipe-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes wipe-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes wipe-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+#lefthandbox img,
+#righthandbox img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* FLICKER EFFECT */
+@keyframes lighter-flicker {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  40% {
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.3;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.flicker {
+  animation: lighter-flicker 0.15s infinite;
+}
+
+#global-timer {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 999999; /* stays above modals */
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+}
+
+.lighter-timer-container {
+  position: fixed;
+  top: 20px; /* Adjust position as you want */
+  right: 20px; /* You can move this anywhere */
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 24px;
+  border-radius: 8px;
+  z-index: 99999; /* ALWAYS ON TOP */
+  pointer-events: none; /* So it never interferes with clicks */
+}
+
+#lighter-timer {
+  color: rgb(255, 155, 6) !important;
+  font-weight: bold;
+  font-size: 6rem;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
+.fade {
+  opacity: 0.6;
+}
+.col {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+#blackout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0;
+  transition: opacity 1s linear;
+  z-index: 9999; /* lower */
+  pointer-events: none;
+}
+
+#jumpscare-img {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 100%;
+  height: auto;
+  z-index: 10000; /* HIGHER */
+  pointer-events: none;
+}
+
+/* fully hide cursor during jumpscare */
+body.jumpscare-active {
+  cursor: none !important;
+}
+
+/*LOCKEDBOX*/
+
+.LOCKEDBOXCOL {
+  display: block;
+  height: 100%;
+  width: calc(100% / 6);
+  background-image: url("images/ONECOOLUMNSCROLLLOCK.JPG");
+  background-size: cover; /* Ensure the image covers the entire viewport */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+}
+
+.emptynumberBox {
+  display: block;
+  height: 12%;
+  width: 100%;
+}
+
+.numberBox {
+  display: block;
+  height: 25%;
+  width: 100%;
+}
+
+/*UPMODAL*/
+.upcol {
+  display: block;
+  height: 100%;
+  width: calc(100% / 3);
+}
+.DOWNARROWBOX1 {
+  display: flex;
+  height: 90%;
+  width: 100%;
+}
+.DOWNARROWBOX {
+  display: flex;
+  height: 10%;
+  width: 100%;
+}
+
+/*NOTE*/
+.nbox {
+  display: flex;
+  height: 100%;
+  width: 80%;
+}
+
+.nbox2 {
+  display: block;
+  height: 100%;
+  width: 20%;
+}
+
+.inNOTEbox {
+  display: flex;
+  height: 80%;
+  width: 100%;
+}
+
+.inNOTEboxTT {
+  display: flex;
+  height: 20%;
+  width: 100%;
+}
+/*STARTINGSCREEN*/
+.pbox {
+  display: flex;
+  height: calc(100% / 3);
+  width: 100%;
+}
+.rbox {
+  display: block;
+  height: 100%;
+  width: 25%;
+}
+.rMIDbox {
+  display: block;
+  height: 100%;
+  width: calc(100% / 3);
+}
+.gbox {
+  display: block;
+  height: 100%;
+  width: 75%;
+}
+.LIGHTERLIFEBOX {
+  display: block;
+  height: 40%;
+  width: 100%;
+}
+.lbbox {
+  display: block;
+  height: 10%;
+  width: 100%;
+}
+.lmbox {
+  display: flex;
+  height: 20%;
+  width: 100%;
+}
+.mpbox {
+  display: block;
+  height: 35%;
+  width: 100%;
+}
+.mpGREbox {
+  display: flex;
+  height: 35%;
+  width: 100%;
+}
+/* RIGHTSCREEN */
+.Rcol {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.NRcol {
+  display: block;
+  height: 100%;
+  width: 20%;
+}
+.Rpbox {
+  display: flex;
+  height: calc(100% / 3);
+  width: 100%;
+}
+.ABOVENAILbox {
+  display: flex;
+  height: 30%;
+  width: 100%;
+}
+.NAILbox {
+  display: flex;
+  height: 70%;
+  width: 100%;
+}
+.LOCKbox {
+  display: flex;
+  height: 70%;
+  width: 80%;
+}
+.Rrbox {
+  display: block;
+  height: 100%;
+  width: 25%;
+}
+.RrMIDbox {
+  display: block;
+  height: 100%;
+  width: calc(100% / 3);
+}
+.Rgbox {
+  display: block;
+  height: 100%;
+  width: 75%;
+}
+.Rlbbox {
+  display: block;
+  height: 10%;
+  width: 100%;
+}
+.Rlmbox {
+  display: flex;
+  height: 20%;
+  width: 100%;
+}
+.Rmpbox {
+  display: block;
+  height: 35%;
+  width: 100%;
+}
+.RmpGREbox {
+  display: flex;
+  height: 35%;
+  width: 100%;
+}
+
+img {
+  max-height: 90%;
+  max-width: 90%;
+}
+
+.NAILimg {
+  max-height: 90%;
+  max-width: 70%;
+  display: flex;
+}
+.CLOSEMARKimg {
+  max-height: 70%;
+  max-width: 70%;
+  display: flex;
+}
+.NOTEimg {
+  max-height: 100%;
+  max-width: 100%;
+  display: flex;
+}
+
+.LEFTNAILimg {
+  max-height: 90%;
+  max-width: 90%;
+  display: flex;
+}
+.LOCKEDBOX {
+  max-height: 100%;
+  max-width: 100%;
+  display: flex;
+}
+.TRASHimg {
+  max-height: 130%;
+  max-width: 130%;
+  display: flex;
+}
+.TRASHimgTWO {
+  max-height: 200%;
+  max-width: 200%;
+  display: flex;
+}
+.transparent {
+  opacity: 0;
+}
+.container img {
+  float: right; /* Floats the image to the right within its container */
+}
+.no-cursor {
+  cursor: default;
+}
+
+.clickable {
+  filter: brightness(85%) drop-shadow(2px 8px 3px);
+}
+/* Default nails: normal pointer */
+.hammer-nail {
+  cursor: pointer;
+}
+
+/* When hammer is unlocked, change cursor ONLY for nails */
+.hammer-mode .hammer-nail {
+  cursor: url("images/HAMMER48X48.png") 10 10, auto !important;
+}
+
+/* When hammer is unlocked, clickable things ALSO use hammer on hover */
+.hammer-mode .clickable:hover {
+  cursor: url("images/HAMMER48X48.png") 10 10, auto !important;
+}
+
+/* suggest the element is clickable */
+.clickable:hover {
+  cursor: pointer;
+  filter: brightness(150%) drop-shadow(2px 8px 3px);
+}
+
+/* add satisfaction to click */
+.clickable:active {
+  filter: drop-shadow(0px 0px 3px);
+  transform: scale(0.98);
+}
+/* control your content */
+.center-content {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.nudgeitleft {
+  justify-content: right;
+  display: flex;
+}
+.contain-image {
+  max-height: 70%;
+  max-width: 70%;
+}
+
+/* enhance the UX */
+/* classes to specify color */
+.green {
+  background-color: #008d24;
+}
+.blue {
+  background-color: #0b69c0;
+}
+.purple {
+  background-color: #3a246d;
+}
+.red {
+  background-color: #ca1b22;
+}
+.orange {
+  background-color: #ea6626;
+}
+.black {
+  background-color: #000000;
+}
+.white {
+  background-color: #ffffff;
+}
+.light-grey {
+  background-color: #a9a9a9;
+}
+.dark-grey {
+  background-color: #707070;
+}
+.almond {
+  background-color: #ecb35d;
+}
+.almondwhite {
+  background-color: #f0d6af;
+}
+.lime {
+  background-color: #00ff00;
+}
+.turquoise {
+  background-color: #40e0d0;
+}
+.cyan {
+  background-color: #008b8b;
+}
+.chocolate {
+  background-color: #7c4015;
+}
+.pink {
+  background-color: #fa87b3;
+}
+/* Add a modal pop-up window */
+/* https://en.wikipedia.org/wiki/Modal_window */
+.modalRight {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+
+  opacity: 1;
+  background-image: url("images/newside\ \(1\).jpg");
+  background-size: cover; /* Ensure the image covers the entire viewport */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+}
+
+.modalLeft {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+
+  opacity: 1;
+  background-image: url("images/lastleftside.jpg");
+  background-size: cover; /* Ensure the image covers the entire viewport */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+}
+
+.modalUP {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+
+  opacity: 1;
+  background-image: url("images/LOOKINGUP\(1\).jpg");
+  background-size: cover; /* Ensure the image covers the entire viewport */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+}
+
+.modalLOCKED {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+
+  width: 80%;
+  height: 70%;
+
+  opacity: 1;
+  margin: 0;
+}
+
+.modalNOTE {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+
+  width: 80%;
+  height: 70%;
+
+  opacity: 1;
+  margin: 0;
+}
+
+.modalLOCKEDINSIDE {
+  width: 80%;
+  height: 70%;
+  background-color: black;
+  opacity: 1;
+  margin: 0;
+}
+
+.modalNOTE {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 1;
+}
+.modal-body {
+  width: 80%;
+  height: 70%;
+  background-color: black;
+  opacity: 1;
+  margin: 0;
+}
