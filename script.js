@@ -95,7 +95,7 @@ function startLighterTimer() {
   timerDisplay.classList.remove("low-time");
 
   // threshold when low-time should start
-  const LOW_THRESHOLD = 10;
+  const LOW_THRESHOLD = 40;
 
   // ensure we immediately reflect the current state (if timeLeft already low)
   if (timeLeft <= LOW_THRESHOLD) {
@@ -900,3 +900,4 @@ function decay4() {
   document.getElementById("freddy4").src = "images/decayed_freddy.png";
   document.getElementById("screamingsound").play();
 }
+
