@@ -246,12 +246,12 @@ function triggerExitSequence() {
     .then(() => {
       // Redirect AFTER sound finishes
       exitSound.onended = () => {
-        window.location.href = "https://7g5n9s.csb.app/"; // ← YOUR LINK HERE
+        window.location.href = "https://zaza-a.github.io/TheBasement/"; // ← YOUR LINK HERE
       };
     })
     .catch((err) => {
       console.log("Autoplay prevented. Redirecting immediately.", err);
-      window.location.href = "https://7g5n9s.csb.app/";
+      window.location.href = "https://zaza-a.github.io/TheBasement/";
     });
 }
 
@@ -900,4 +900,5 @@ function decay4() {
   document.getElementById("freddy4").src = "images/decayed_freddy.png";
   document.getElementById("screamingsound").play();
 }
+
 
