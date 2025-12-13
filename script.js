@@ -823,12 +823,76 @@ function playCloseAnimation(direction, callback) {
     callback(); // hide modal AFTER animation finishes
   }, 300);
 }
+let rightHintTimeout = null;
+
+function showRightSideHint() {
+  const box = document.getElementById("SMISNEEDEDRIGHTSCREEN");
+
+  // Clear any previous timers (important)
+  if (rightHintTimeout) {
+    clearTimeout(rightHintTimeout);
+  }
+
+  // Set text
+  box.innerText =
+    "There’s a box with a lock and a nail here... and more numbers on the walls...\nI wonder how to find the order to put these numbers in...";
+
+  // Styling (safe to do here)
+  box.style.display = "block";
+  box.style.opacity = "1";
+  box.style.textAlign = "center";
+  box.style.color = "#ffd27d"; // readable warm color
+  box.style.fontSize = "40px";
+  box.style.fontFamily = "'Creepster', cursive";
+
+  // Fade out after 20 seconds
+  rightHintTimeout = setTimeout(() => {
+    box.style.opacity = "0";
+
+    // Fully hide after fade
+    setTimeout(() => {
+      box.innerText = "";
+      box.style.display = "none";
+    }, 1000);
+  }, 20000);
+}
+let leftHintTimeout = null;
+
+function showLeftSideHint() {
+  const box = document.getElementById("SMISNEEDEDLEFTSCREEN");
+
+  // Clear previous timer if re-entering
+  if (leftHintTimeout) {
+    clearTimeout(leftHintTimeout);
+  }
+
+  box.innerText =
+    "More numbers carved into the wall here...a nail...and a note, Maybe this note can help me with the numbers?";
+
+  box.style.display = "block";
+  box.style.opacity = "1";
+  box.style.textAlign = "center";
+  box.style.color = "#ffd27d";
+  box.style.fontSize = "40px";
+  box.style.fontFamily = "'Creepster', cursive";
+
+  // Fade out after 20 seconds
+  leftHintTimeout = setTimeout(() => {
+    box.style.opacity = "0";
+
+    setTimeout(() => {
+      box.innerText = "";
+      box.style.display = "none";
+    }, 1000);
+  }, 20000);
+}
 
 function showModalRight() {
   document.getElementById("moving").play();
   playWipe("right", () => {
     document.getElementById("myModalRight").style.display = "flex";
   });
+  showRightSideHint();
 }
 
 function hideModalRight() {
@@ -843,6 +907,7 @@ function showModalLeft() {
   playWipe("left", () => {
     document.getElementById("myModalLeft").style.display = "flex";
   });
+  showLeftSideHint();
 }
 
 function hideModalLeft() {
@@ -900,5 +965,6 @@ function decay4() {
   document.getElementById("freddy4").src = "images/decayed_freddy.png";
   document.getElementById("screamingsound").play();
 }
+
 
 
