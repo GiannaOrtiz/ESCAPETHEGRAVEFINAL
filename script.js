@@ -198,6 +198,8 @@ function triggerLighterDeath() {
 
     // Disable cursor globally
     document.body.classList.add("jumpscare-active");
+    // 🔥 SHOW RESET BUTTON
+    document.getElementById("resetButton").style.display = "block";
   }, 1000); // <-- delay stays the same as before
 }
 
@@ -970,6 +972,7 @@ function decay4() {
   document.getElementById("freddy4").src = "images/decayed_freddy.png";
   document.getElementById("screamingsound").play();
 }
+
 
 
 
