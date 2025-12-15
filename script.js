@@ -202,6 +202,9 @@ function triggerLighterDeath() {
     document.getElementById("resetButton").style.display = "block";
   }, 1000); // <-- delay stays the same as before
 }
+function resetGame() {
+  window.location.reload();
+}
 
 window.onload = function () {
   startLighterTimer();
@@ -972,6 +975,7 @@ function decay4() {
   document.getElementById("freddy4").src = "images/decayed_freddy.png";
   document.getElementById("screamingsound").play();
 }
+
 
 
 
