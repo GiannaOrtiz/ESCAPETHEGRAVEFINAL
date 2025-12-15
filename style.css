@@ -9,6 +9,33 @@ body {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
 }
+#resetButton {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+
+  padding: 14px 28px;
+  font-size: 20px;
+  font-family: "Creepster", cursive;
+
+  background: darkred;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  display: none;
+
+  /* 🔥 VERY IMPORTANT */
+  z-index: 100000;
+
+  box-shadow: 0 0 15px black;
+}
+
+#resetButton:hover {
+  background: red;
+}
+
 .exit-text {
   position: fixed;
   top: 60%;
@@ -791,4 +818,5 @@ img {
   opacity: 1;
   margin: 0;
 }
+
 
