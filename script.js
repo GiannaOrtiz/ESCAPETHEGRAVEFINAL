@@ -235,7 +235,12 @@ function triggerExitSequence() {
   // Hide cursor
   document.body.style.cursor = "none";
   blackout.style.cursor = "none";
-
+  
+  const exitText = document.getElementById("exitText");
+  exitText.style.display = "block";
+  setTimeout(() => {
+    exitText.style.opacity = "1";
+  }, 50);
   // Play exit sound
   const exitSound = document.getElementById("exitSound");
   exitSound.volume = 1.0;
@@ -965,6 +970,7 @@ function decay4() {
   document.getElementById("freddy4").src = "images/decayed_freddy.png";
   document.getElementById("screamingsound").play();
 }
+
 
 
 
