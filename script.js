@@ -74,7 +74,7 @@ function handleNailClick(side) {
   // If hammer is unlocked, do the nail removal logic here
   console.log("Hammer is unlocked — remove nail.");
 }
-const TOTAL_TIME = 200; // The full starting time
+const TOTAL_TIME = 250; // The full starting time
 let timeLeft = TOTAL_TIME;
 let timerInterval;
 
@@ -965,6 +965,7 @@ function decay4() {
   document.getElementById("freddy4").src = "images/decayed_freddy.png";
   document.getElementById("screamingsound").play();
 }
+
 
 
 
