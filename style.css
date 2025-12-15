@@ -9,6 +9,22 @@ body {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
 }
+.exit-text {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  font-family: "Creepster", cursive;
+  font-size: 32px;
+  color: #ffb347;
+
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+}
+
 #SMISNEEDEDRIGHTSCREEN {
   transition: opacity 1s ease;
 }
@@ -775,3 +791,4 @@ img {
   opacity: 1;
   margin: 0;
 }
+
